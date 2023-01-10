@@ -15,7 +15,7 @@ function App() {
     getNewColors()
   }, []);
 
-  function getRandomColor() {
+  function getRandomColor(decider) {
     let colorOne;
     let colorTwo;
     let colorThree;
@@ -41,14 +41,31 @@ function App() {
 
     let newColor = [colorOne, colorTwo, colorThree, colorFour, colorFive, colorSix].join('');
 
-    let falseColor = [colorThree, colorFive, colorOne, colorFour, colorTwo, colorSix].join('');
+    if (decider === 'correct') {
+      if (newColor.length === 6) {
+        setColor(newColor);
+        return newColor;
+      } else {
+        getRandomColor('correct');
+      };
+    };
 
-    if (newColor.length === 6) {
-      setColor(newColor);
-      return newColor;
-    } else {
-      getRandomColor();
-      return falseColor;
+    if (decider === 'wrongOne') {
+      if (newColor.length === 6) {
+        setWrongColorOne(newColor);
+        return newColor;
+      } else {
+        getRandomColor('wrongOne');
+      };
+    };
+
+    if (decider === 'wrongTwo') {
+      if (newColor.length === 6) {
+        setWrongColorTwo(newColor);
+        return newColor;
+      } else {
+        getRandomColor('wrongTwo');
+      };
     };
   };
 
@@ -58,10 +75,10 @@ function App() {
   };
 
   function handleClick(guess) {
-    if (!correctMessage && guess === `#${color}`) {
+    if (guess === `#${color}`) {
       setCorrectMessage(true);
       setErrorMessage(false);
-    } else if (!errorMessage && guess !== `#${color}`) {
+    } else if (guess !== `#${color}`) {
       setErrorMessage(true);
       setCorrectMessage(false);
     };
@@ -69,21 +86,14 @@ function App() {
   };
 
   function getNewColors() {
-    getRandomColor();
+    getRandomColor('correct');
     changeBackground();
-    setWrongColorOne(getRandomColor());
-    setWrongColorTwo(getRandomColor());
-    shuffleArray(responses);
+    getRandomColor('wrongOne');
+    getRandomColor('wrongTwo');
   };
 
-  function shuffleArray(array) {
-    for (var i = array.length - 1; i > 0; i--) {
-        var j = Math.floor(Math.random() * (i + 1));
-        var temp = array[i];
-        array[i] = array[j];
-        array[j] = temp;
-    }
-  }
+  // Shuffle Responses
+  responses.sort( () => 0.5 - Math.random() );
 
   return (
     <div className="container">
