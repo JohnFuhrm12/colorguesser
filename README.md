@@ -1,6 +1,6 @@
 # Color Guesser
 
-React.ks app that shows a random color and the user must try to guess its hex value from 3 choices. Colors and choices are shuffled at random. Deployed to Netlify.
+React.js app that shows a random color and the user must try to guess its hex value from 3 choices. Colors and choices are shuffled at random. Deployed to Netlify.
 
 Link to Site: https://colorguesserjf12.netlify.app
 
