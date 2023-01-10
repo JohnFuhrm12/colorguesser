@@ -14,9 +14,10 @@ html, body {
   width: 350px;
   height: 300px;
   margin: 0 auto;
-  margin-top: 8%;
+  margin-top: 6%;
   border: solid 10px white;
   background-color: aqua;
+  transition: 0.3s;
 }
 
 .row {

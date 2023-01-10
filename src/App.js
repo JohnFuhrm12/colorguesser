@@ -10,6 +10,9 @@ function App() {
   const [errorMessage, setErrorMessage] = useState(false);
   const [responseMessage, setResponseMessage] = useState(false);
 
+  const [guess, setGuess] = useState(false);
+  const [answer, setAnswer] = useState(false);
+
   let responses = [`#${wrongColorOne}`, `#${color}`, `#${wrongColorTwo}`];
 
   useEffect(() => {
@@ -88,6 +91,9 @@ function App() {
       setResponseMessage(true);
     };
 
+    setGuess(guess);
+    setAnswer(color);
+
     getNewColors();
   };
 
@@ -114,6 +120,7 @@ function App() {
       </div>
       {correctMessage ? <h2 className='correctMessage'>Correct!</h2> : <></>}
       {errorMessage ? <h2 className='errorMessage'>Incorrect!</h2> : <></>}
+      {responseMessage ? <h2>{`You Guessed: ${guess} The Correct Answer Was: #${answer}`}</h2> : <></>}
     </div>
   );
 }
