@@ -8,6 +8,7 @@ function App() {
 
   const [correctMessage, setCorrectMessage] = useState(false);
   const [errorMessage, setErrorMessage] = useState(false);
+  const [responseMessage, setResponseMessage] = useState(false);
 
   let responses = [`#${wrongColorOne}`, `#${color}`, `#${wrongColorTwo}`];
 
@@ -82,6 +83,11 @@ function App() {
       setErrorMessage(true);
       setCorrectMessage(false);
     };
+
+    if (!responseMessage) {
+      setResponseMessage(true);
+    };
+
     getNewColors();
   };
 
@@ -93,7 +99,7 @@ function App() {
   };
 
   // Shuffle Responses
-  responses.sort( () => 0.5 - Math.random() );
+  responses.sort(() => 0.5 - Math.random());
 
   return (
     <div className="container">
