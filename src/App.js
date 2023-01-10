@@ -56,10 +56,10 @@ function App() {
   };
 
   function handleClick(guess) {
-    if (!correctMessage && guess === color) {
+    if (!correctMessage && guess === `#${color}`) {
       setCorrectMessage(true);
       setErrorMessage(false);
-    } else if (!errorMessage && guess !== color) {
+    } else if (!errorMessage && guess !== `#${color}`) {
       setErrorMessage(true);
       setCorrectMessage(false);
     };
@@ -73,15 +73,18 @@ function App() {
     setWrongColorTwo(getRandomColor());
   };
 
+  let responses = [`#${wrongColorOne}`, `#${color}`, `#${wrongColorOne}`];
 
   return (
     <div className="container">
       <div className='square' id='square'/>
       <h1 className='title'>Guess the Color!</h1>
       <div className='row'>
-        <button onClick={(e) => handleClick(wrongColorOne)} className='button'>{`#${wrongColorOne}`}</button>
-        <button onClick={(e) => handleClick(color)} className='button'>{`#${color}`}</button>
-        <button onClick={(e) => handleClick(wrongColorTwo)} className='button'>{`#${wrongColorTwo}`}</button>
+        {responses.map((response) => 
+          <>
+          <button onClick={(e) => handleClick(e.currentTarget.innerHTML)} className='button'>{response}</button>
+          </>
+        )}
       </div>
       {correctMessage ? <h2 className='correctMessage'>Correct!</h2> : <></>}
       {errorMessage ? <h2 className='errorMessage'>Incorrect!</h2> : <></>}
