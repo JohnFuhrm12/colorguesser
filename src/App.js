@@ -6,9 +6,11 @@ function App() {
   const [wrongColorOne, setWrongColorOne] = useState('');
   const [wrongColorTwo, setWrongColorTwo] = useState('');
 
+  const [correctMessage, setCorrectMessage] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(false);
+
   useEffect(() => {
-    getRandomColor();
-    changeBackground()
+    getNewColors()
   }, []);
 
   function getRandomColor() {
@@ -37,17 +39,38 @@ function App() {
 
     let newColor = [colorOne, colorTwo, colorThree, colorFour, colorFive, colorSix].join('');
 
+    let falseColor = [colorThree, colorFive, colorOne, colorFour, colorTwo, colorSix].join('');
+
     if (newColor.length === 6) {
       setColor(newColor);
+      return newColor;
     } else {
       getRandomColor();
-    }
+      return falseColor;
+    };
   };
 
   function changeBackground() {
     const square = document.getElementById('square');
-    console.log(color);
     square.style.backgroundColor = `#${color}`;
+  };
+
+  function handleClick(guess) {
+    if (!correctMessage && guess === color) {
+      setCorrectMessage(true);
+      setErrorMessage(false);
+    } else if (!errorMessage && guess !== color) {
+      setErrorMessage(true);
+      setCorrectMessage(false);
+    };
+    getNewColors();
+  };
+
+  function getNewColors() {
+    getRandomColor();
+    changeBackground();
+    setWrongColorOne(getRandomColor());
+    setWrongColorTwo(getRandomColor());
   };
 
 
@@ -56,12 +79,12 @@ function App() {
       <div className='square' id='square'/>
       <h1 className='title'>Guess the Color!</h1>
       <div className='row'>
-        <button className='button'>dsf</button>
-        <button className='button'>{`#${color}`}</button>
-        <button className='button'>dfgdg</button>
+        <button onClick={(e) => handleClick(wrongColorOne)} className='button'>{`#${wrongColorOne}`}</button>
+        <button onClick={(e) => handleClick(color)} className='button'>{`#${color}`}</button>
+        <button onClick={(e) => handleClick(wrongColorTwo)} className='button'>{`#${wrongColorTwo}`}</button>
       </div>
-      <button onClick={getRandomColor}>TEST</button>
-      <button onClick={changeBackground}>TEST CHANGE</button>
+      {correctMessage ? <h2 className='correctMessage'>Correct!</h2> : <></>}
+      {errorMessage ? <h2 className='errorMessage'>Incorrect!</h2> : <></>}
     </div>
   );
 }
