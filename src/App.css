@@ -16,6 +16,7 @@ html, body {
   margin: 0 auto;
   margin-top: 8%;
   border: solid 10px white;
+  background-color: aqua;
 }
 
 .row {
