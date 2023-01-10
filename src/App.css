@@ -44,3 +44,11 @@ html, body {
   color: gray;
   border: solid 3px rgb(176, 176, 176);
 }
+
+.correctMessage {
+  color: lime;
+}
+
+.errorMessage {
+  color: red;
+}

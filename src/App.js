@@ -9,6 +9,8 @@ function App() {
   const [correctMessage, setCorrectMessage] = useState(false);
   const [errorMessage, setErrorMessage] = useState(false);
 
+  let responses = [`#${wrongColorOne}`, `#${color}`, `#${wrongColorTwo}`];
+
   useEffect(() => {
     getNewColors()
   }, []);
@@ -71,9 +73,17 @@ function App() {
     changeBackground();
     setWrongColorOne(getRandomColor());
     setWrongColorTwo(getRandomColor());
+    shuffleArray(responses);
   };
 
-  let responses = [`#${wrongColorOne}`, `#${color}`, `#${wrongColorOne}`];
+  function shuffleArray(array) {
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+  }
 
   return (
     <div className="container">
