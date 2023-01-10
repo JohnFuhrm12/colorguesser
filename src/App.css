@@ -17,3 +17,29 @@ html, body {
   margin-top: 8%;
   border: solid 10px white;
 }
+
+.row {
+  display: flex;
+  flex-direction: row;
+  width: 40%;
+  margin: 0 auto;
+  justify-content: space-around;
+  margin-top: 2%;
+}
+
+.button {
+  cursor: pointer;
+  transition: 0.5s;
+  padding: 10px;
+  font-size: 20px;
+  background-color: black;
+  color: white;
+  border: solid 3px white;
+}
+
+.button:hover{
+  transition: 0.5s;
+  transform: translateY(-5px);
+  color: gray;
+  border: solid 3px rgb(176, 176, 176);
+}

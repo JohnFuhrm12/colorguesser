@@ -9,6 +9,11 @@ function App() {
     <div className="container">
       <div className='square' style={{backgroundColor: color}}/>
       <h1 className='title'>Guess the Color</h1>
+      <div className='row'>
+        <button className='button'>#FF87A3</button>
+        <button className='button'>#FF87A3</button>
+        <button className='button'>#FF87A3</button>
+      </div>
     </div>
   );
 }
